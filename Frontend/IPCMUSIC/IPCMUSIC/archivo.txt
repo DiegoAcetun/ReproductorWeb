@@ -1,0 +1,2 @@
+contenido archivo txt
+Nombre,Cancion,Artista,Album,VecesReproducida,Ruta,Imagen
