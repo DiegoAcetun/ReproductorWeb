@@ -1,7 +1,7 @@
-Lista,C1,A1,AL1,V1,R1,I1
-L2,C2,A2,AL2,V2,R2,I2
-L3,C3,A3,AL3,V3,R3,I3
-L4,C4,A4,AL4,V4,R4,I4
-L5,C5,A5,AL5,V5,R5,I5
-L6,C6,A6,AL6,V6,R6,I6
-L7,C7,A7,AL7,V7,R7,I7
+ListaA,CancionA,ArtistaA,AlbumA,1,RutaA,ImagenA
+ListaB,CancionB,ArtistaB,AlbumB,2,RutaB,ImagenB
+ListaC,CancionC,ArtistaC,AlbumC,3,RutaC,ImagenC
+ListaD,CancionD,ArtistaD,AlbumD,4,RutaD,ImagenD
+ListaE,CancionE,ArtistaE,AlbumE,5,RutaE,ImagenE
+ListaF,CancionF,ArtistaF,AlbumF,6,RutaF,ImagenF
+ListaG,CancionG,ArtistaG,AlbumG,7,RutaG,ImagenG
