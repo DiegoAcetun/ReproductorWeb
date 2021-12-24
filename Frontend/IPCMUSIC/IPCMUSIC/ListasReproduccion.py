@@ -8,4 +8,4 @@ class ListasReproduccion():
         print('*'*25)
         print('Lista de reproduccion', self.nombre)
         for i in self.canciones:
-            print(i.nombre)
+            print(i.nombre, i.album, i.artista)

@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">  
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -33,7 +33,13 @@
             </ul>
         {% endif %}
         </div>
-        <textarea name="comment" cols="100" rows="20">{{contenidoXML}}</textarea>
+    </form>
+
+    <form action="{% url 'enviarXML' %}" method="post"> {% csrf_token %}
+        <textarea name="textoXML" cols="100" rows="20">{{contenidoXML}}</textarea>
+        <div class="btn-group" role="group" aria-label="Basic outlined example" style="position: relative; bottom: 300px; left: 100px;">
+            <button class="btn btn-outline-primary">Enviar XML</button>
+        </div>
     </form>
     
     <!-- <div class="cargarCSV" id="divXML">

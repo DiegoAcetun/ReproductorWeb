@@ -13,11 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from os import O_CREAT, name
 from django.contrib import admin
 from django.urls import path
-from IPCMUSIC.views import saludo, recibir
+from IPCMUSIC.views import saludo, recibir, recibirXML, recibirLista
 # from IPCMUSIC import views
 urlpatterns = [
     path('', saludo, name='saludo'),
     path('recibir/', recibir, name='recibir'),
+    path('enviar/', recibirXML, name='enviarXML'),
+    path('reproducir/', recibirLista, name='reproducir'),
+
 ]
