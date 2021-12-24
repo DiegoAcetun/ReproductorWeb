@@ -14,7 +14,7 @@
     <!-- {% if mostrar != '' %}
         <h2>{{mostrar}}</h2>
     {% endif %} -->
-    <form action="{% url 'recibir' %}">
+    <form action="{% url 'recibir' %}" method="post"> {% csrf_token %}
         <div class="mb-3 col-3">
             
             <h4 style="color: blueviolet;">Cargar CSV</h4>
@@ -33,6 +33,7 @@
             </ul>
         {% endif %}
         </div>
+        <textarea name="comment" cols="100" rows="20">{{contenidoXML}}</textarea>
     </form>
     
     <!-- <div class="cargarCSV" id="divXML">

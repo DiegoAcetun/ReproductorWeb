@@ -3,21 +3,33 @@ import re
 from IPCMUSIC.ListasReproduccion import ListasReproduccion
 from IPCMUSIC.Cancion import Cancion
 def CSV(archivoCsv):
+    contenidoXML = '' 
     listasReproduccion = []
     listaCanciones = []
     errorCSV = False
     reNombre = re.compile("[a-zA-Z]+")
-    reReproducciones = re.compile("[0-9]")
-    contenidoXML = ''
-    contenidoXML+='?xml version="1.0" encoding="UTF-8"?>\n<ListasReproducción>\n'
+    reReproducciones = re.compile("[0-9]")  
+    contenidoXML+='<?xml version="1.0" encoding="UTF-8"?>\n<ListasReproducción>\n'
     name = 'IPCMUSIC/'+archivoCsv
     with open(name) as f:
         reader = csv.reader(f)
         for row in reader:
             # print(reNombre.fullmatch("asiuss oo"))
             if reNombre.fullmatch(row[0]) is not None:
-                nuevaListaReproduccion = ListasReproduccion(row[0])
-                listasReproduccion.append(nuevaListaReproduccion)
+                if len(listasReproduccion)>0:
+                    listaRepetida = False
+                    for j in range(len(listasReproduccion)):
+                        if listasReproduccion[j].nombre == row[0]:
+                            listaRepetida = True
+                            break
+                    if listaRepetida == False:
+                        nuevaListaReproduccion = ListasReproduccion(row[0])
+                        listasReproduccion.append(nuevaListaReproduccion) 
+
+                #si la lista esta vacia e agregamos el primero elemento
+                else:
+                    nuevaListaReproduccion = ListasReproduccion(row[0])
+                    listasReproduccion.append(nuevaListaReproduccion)    
                 
             else:        
                 errorCSV = True      
@@ -53,9 +65,38 @@ def CSV(archivoCsv):
                 errorCSV = True      
                 break
             nuevaCancion = Cancion(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
-
+            listaCanciones.append(nuevaCancion)
             # print(f'{row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}')
     # print('error', errorCSV)
-    for i in listasReproduccion:
-        print(i.nombre)
-    return [errorCSV]
+    # for i in listasReproduccion:
+    #     print(i.nombre)
+    # print('*'*25)
+    # for i in listaCanciones:
+    #     print(i.nombre)
+    if errorCSV == False:
+        for i in listaCanciones:
+            for j in listasReproduccion:
+                if i.listaReproduccion == j.nombre:
+                    j.canciones.append(i)
+                    break
+        for i in listasReproduccion:
+            i.verCanciones()
+        
+        for i in listasReproduccion:
+            contenidoXML+=f'    <Lista nombre="{i.nombre}">\n'
+            for j in i.canciones:
+                contenidoXML+=f'    <cancion nombre="{j.nombre}">\n'
+                contenidoXML+=f'        <artista>{j.artista}</artista>\n'
+                contenidoXML+=f'        <album>{j.album}</album>\n'
+                contenidoXML+=f'        <vecesReproducida>{j.reproducciones}</vecesReproducida>\n'
+                contenidoXML+=f'        <imagen>{j.imagen}</imagen>\n'
+                contenidoXML+=f'        <ruta>{j.ruta}</ruta>\n'
+                contenidoXML+=' </cancion>\n'
+            contenidoXML+=' </Lista>\n'
+        contenidoXML+='</ListasReproduccion>'
+
+        archivo = open('archivo.xml', 'w')
+        archivo.write(contenidoXML)
+        archivo.close()
+
+    return [errorCSV, contenidoXML]

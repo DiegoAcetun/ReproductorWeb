@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListasReproducción>
+    <Lista nombre="ListaA">
+    <cancion nombre="CancionA">
+        <artista>ArtistaA</artista>
+        <album>AlbumA</album>
+        <vecesReproducida>1</vecesReproducida>
+        <imagen>ImagenA</imagen>
+        <ruta>RutaA</ruta>
+ </cancion>
+    <cancion nombre="CancionB">
+        <artista>ArtistaB</artista>
+        <album>AlbumB</album>
+        <vecesReproducida>2</vecesReproducida>
+        <imagen>ImagenB</imagen>
+        <ruta>RutaB</ruta>
+ </cancion>
+ </Lista>
+    <Lista nombre="ListaC">
+    <cancion nombre="CancionC">
+        <artista>ArtistaC</artista>
+        <album>AlbumC</album>
+        <vecesReproducida>3</vecesReproducida>
+        <imagen>ImagenC</imagen>
+        <ruta>RutaC</ruta>
+ </cancion>
+ </Lista>
+    <Lista nombre="ListaD">
+    <cancion nombre="CancionD">
+        <artista>ArtistaD</artista>
+        <album>AlbumD</album>
+        <vecesReproducida>4</vecesReproducida>
+        <imagen>ImagenD</imagen>
+        <ruta>RutaD</ruta>
+ </cancion>
+    <cancion nombre="CancionE">
+        <artista>ArtistaE</artista>
+        <album>AlbumE</album>
+        <vecesReproducida>5</vecesReproducida>
+        <imagen>ImagenE</imagen>
+        <ruta>RutaE</ruta>
+ </cancion>
+ </Lista>
+    <Lista nombre="ListaF">
+    <cancion nombre="CancionF">
+        <artista>ArtistaF</artista>
+        <album>AlbumF</album>
+        <vecesReproducida>6</vecesReproducida>
+        <imagen>ImagenF</imagen>
+        <ruta>RutaF</ruta>
+ </cancion>
+ </Lista>
+    <Lista nombre="ListaG">
+    <cancion nombre="CancionG">
+        <artista>ArtistaG</artista>
+        <album>AlbumG</album>
+        <vecesReproducida>7</vecesReproducida>
+        <imagen>ImagenG</imagen>
+        <ruta>RutaG</ruta>
+ </cancion>
+ </Lista>
+</ListasReproduccion>

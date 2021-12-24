@@ -1,7 +1,7 @@
 ListaA,CancionA,ArtistaA,AlbumA,1,RutaA,ImagenA
-ListaB,CancionB,ArtistaB,AlbumB,2,RutaB,ImagenB
+ListaA,CancionB,ArtistaB,AlbumB,2,RutaB,ImagenB
 ListaC,CancionC,ArtistaC,AlbumC,3,RutaC,ImagenC
 ListaD,CancionD,ArtistaD,AlbumD,4,RutaD,ImagenD
-ListaE,CancionE,ArtistaE,AlbumE,5,RutaE,ImagenE
+ListaD,CancionE,ArtistaE,AlbumE,5,RutaE,ImagenE
 ListaF,CancionF,ArtistaF,AlbumF,6,RutaF,ImagenF
 ListaG,CancionG,ArtistaG,AlbumG,7,RutaG,ImagenG
