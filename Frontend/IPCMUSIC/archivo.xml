@@ -5,15 +5,38 @@
         <artista>ArtistaA</artista>
         <album>AlbumA</album>
         <vecesReproducida>1</vecesReproducida>
-        <imagen>ImagenA</imagen>
-        <ruta>RutaA</ruta>
+        <imagen>Img/faded.jpg</imagen>
+        <ruta>RutaA.mp3</ruta>
  </cancion>
+    <cancion nombre="CancionD">
+        <artista>ArtistaA</artista>
+        <album>AlbumB</album>
+        <vecesReproducida>4</vecesReproducida>
+        <imagen>Img/faded.jpg</imagen>
+        <ruta>RutaD.mp3</ruta>
+ </cancion>
+    <cancion nombre="CancionG">
+        <artista>ArtistaB</artista>
+        <album>AlbumA</album>
+        <vecesReproducida>7</vecesReproducida>
+        <imagen>Img/heroes.jpg</imagen>
+        <ruta>RutaG.mp3</ruta>
+ </cancion>
+ </Lista>
+    <Lista nombre="ListaB">
     <cancion nombre="CancionB">
         <artista>ArtistaB</artista>
-        <album>AlbumB</album>
+        <album>AlbumA</album>
         <vecesReproducida>2</vecesReproducida>
-        <imagen>ImagenB</imagen>
-        <ruta>RutaB</ruta>
+        <imagen>Img/alone.jpg</imagen>
+        <ruta>RutaB.mp3</ruta>
+ </cancion>
+    <cancion nombre="CancionE">
+        <artista>ArtistaC</artista>
+        <album>AlbumB</album>
+        <vecesReproducida>5</vecesReproducida>
+        <imagen>Img/alone.jpg</imagen>
+        <ruta>RutaE.mp3</ruta>
  </cancion>
  </Lista>
     <Lista nombre="ListaC">
@@ -21,42 +44,15 @@
         <artista>ArtistaC</artista>
         <album>AlbumC</album>
         <vecesReproducida>3</vecesReproducida>
-        <imagen>ImagenC</imagen>
-        <ruta>RutaC</ruta>
+        <imagen>Img/heroes.jpg</imagen>
+        <ruta>RutaC.mp3</ruta>
  </cancion>
- </Lista>
-    <Lista nombre="ListaD">
-    <cancion nombre="CancionD">
-        <artista>ArtistaD</artista>
-        <album>AlbumD</album>
-        <vecesReproducida>4</vecesReproducida>
-        <imagen>ImagenD</imagen>
-        <ruta>RutaD</ruta>
- </cancion>
-    <cancion nombre="CancionE">
-        <artista>ArtistaE</artista>
-        <album>AlbumE</album>
-        <vecesReproducida>5</vecesReproducida>
-        <imagen>ImagenE</imagen>
-        <ruta>RutaE</ruta>
- </cancion>
- </Lista>
-    <Lista nombre="ListaF">
     <cancion nombre="CancionF">
-        <artista>ArtistaF</artista>
-        <album>AlbumF</album>
+        <artista>ArtistaB</artista>
+        <album>AlbumC</album>
         <vecesReproducida>6</vecesReproducida>
-        <imagen>ImagenF</imagen>
-        <ruta>RutaF</ruta>
- </cancion>
- </Lista>
-    <Lista nombre="ListaG">
-    <cancion nombre="CancionG">
-        <artista>ArtistaG</artista>
-        <album>AlbumG</album>
-        <vecesReproducida>7</vecesReproducida>
-        <imagen>ImagenG</imagen>
-        <ruta>RutaG</ruta>
+        <imagen>Img/faded.jpg</imagen>
+        <ruta>RutaF.mp3</ruta>
  </cancion>
  </Lista>
 </ListasReproduccion>

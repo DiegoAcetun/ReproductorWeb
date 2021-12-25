@@ -1,7 +1,7 @@
-ListaA,CancionA,ArtistaA,AlbumA,1,RutaA,ImagenA
-ListaA,CancionB,ArtistaB,AlbumB,2,RutaB,ImagenB
-ListaC,CancionC,ArtistaC,AlbumC,3,RutaC,ImagenC
-ListaD,CancionD,ArtistaD,AlbumD,4,RutaD,ImagenD
-ListaD,CancionE,ArtistaE,AlbumE,5,RutaE,ImagenE
-ListaF,CancionF,ArtistaF,AlbumF,6,RutaF,ImagenF
-ListaG,CancionG,ArtistaG,AlbumG,7,RutaG,ImagenG
+ListaA,CancionA,ArtistaA,AlbumA,1,RutaA.mp3,Img/faded.jpg
+ListaB,CancionB,ArtistaB,AlbumA,2,RutaB.mp3,Img/alone.jpg
+ListaC,CancionC,ArtistaC,AlbumC,3,RutaC.mp3,Img/heroes.jpg
+ListaA,CancionD,ArtistaA,AlbumB,4,RutaD.mp3,Img/faded.jpg
+ListaB,CancionE,ArtistaC,AlbumB,5,RutaE.mp3,Img/alone.jpg
+ListaC,CancionF,ArtistaB,AlbumC,6,RutaF.mp3,Img/faded.jpg
+ListaA,CancionG,ArtistaB,AlbumA,7,RutaG.mp3,Img/heroes.jpg

@@ -16,12 +16,14 @@ Including another URLconf
 from os import O_CREAT, name
 from django.contrib import admin
 from django.urls import path
-from IPCMUSIC.views import saludo, recibir, recibirXML, recibirLista
+from IPCMUSIC.views import saludo, recibir, recibirXML, recibirLista, siguiente, anterior
 # from IPCMUSIC import views
 urlpatterns = [
     path('', saludo, name='saludo'),
     path('recibir/', recibir, name='recibir'),
     path('enviar/', recibirXML, name='enviarXML'),
     path('reproducir/', recibirLista, name='reproducir'),
+    path('siguiente/', siguiente, name='siguiente'),
+    path('anterior/', anterior, name='anterior'),
 
 ]

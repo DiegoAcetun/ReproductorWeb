@@ -55,12 +55,12 @@ def CSV(archivoCsv):
             else:
                 errorCSV = True      
                 break
-            if reNombre.fullmatch(row[5]) is not None:
+            if row[5].endswith('.mp3'):
                 pass
             else:
                 errorCSV = True      
                 break
-            if reNombre.fullmatch(row[6]) is not None:
+            if row[6].endswith('.jpg'):
                 pass
             else:
                 errorCSV = True      
@@ -99,7 +99,7 @@ def CSV(archivoCsv):
         archivo = open('archivo.xml', 'w')
         archivo.write(contenidoXML)
         archivo.close()
-
+    # print('error', errorCSV)
     return [errorCSV, contenidoXML]
 
 def leerXML(contenido):
@@ -130,7 +130,7 @@ def leerXML(contenido):
                     print('el album es', album)
 
                 elif root[i][j][k].tag == 'vecesReproducida':
-                    vecesReproducida = root[i][j][k].text
+                    vecesReproducida = int(root[i][j][k].text)
                 elif root[i][j][k].tag == 'imagen':
                     imagen = root[i][j][k].text
                 elif root[i][j][k].tag == 'ruta':

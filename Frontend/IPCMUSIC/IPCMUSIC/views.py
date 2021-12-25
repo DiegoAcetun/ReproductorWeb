@@ -5,58 +5,111 @@ from IPCMUSIC.funciones import CSV, leerXML
 from django.contrib import messages
 import copy
 # print(contenidoXML, 'aqui')
-contenidoXML = None
+contenidoXML = ''
 listasReproduccion = []
 listaActual = None
+posicionLista=0
+listaReturnCSV=[]
 def saludo(request):
     dic = {'mostrar': 'a'}
     # if request.method=='GET':
     return render(request, "index.html", dic)
 
 def recibir(request):
-    global contenidoXML
+    global contenidoXML, listaReturnCSV
+    contenidoXML=''
+    listaReturnCSV=[]
+
     # print(request.GET.get('csv'))
     if request.POST.get('csv'):
         name = request.POST.get('csv')
-        messages.success(request, 'Archivo listo para analizar')
+        # messages.success(request, 'Archivo listo para analizar')
         # post[0] = CSV(name)[0]
-        contenidoXML = CSV(name)[1]
-        # print('el c es', contenidoXML)
+        listaReturnCSV = CSV(name)
+        errorCSV = listaReturnCSV[0]
+        if errorCSV == False:
 
-        
-    else:
-        print('no hay contenido')
-        messages.success(request, 'No se ha seleccionado el archivo')
-    dic = {"v1":"oo", 'mostrar':'a', 'contenidoXML': contenidoXML}
-    # print(dic['mostrar'])
-    # print('el c es', contenidoXML)
+            contenidoXML = listaReturnCSV[1]
+            dic = {'contenidoXML': contenidoXML}
+            messages.success(request, 'El CSV no tiene errores')
     
-    return render(request, "index.html", dic)
+            return render(request, "index.html", dic)
+        
+        else:
+            print('no hay contenido')
+            messages.success(request, 'El CSV contiene errores, corregirlo')
+            dic = {'contenidoXML': contenidoXML}
+            return render(request, "index.html", dic)
 def recibirXML(request):
     global listasReproduccion
     if request.POST.get('textoXML'):
         listasReproduccion = leerXML(request.POST.get('textoXML'))[:]
         # messages.success(request, 'Archivo listo para analizar')
         # post[0] = CSV(name)[0]
-        dic = {"Listas": listasReproduccion, 'Cancion':'', 'Album':'', 'Artista':''}
+        dic = {"Listas": listasReproduccion, 'Cancion':'', 'Album':'', 'Artista':'', 'Imagen':'Img/blanco.jpg'}
         # print('imprimiendo contenido', request.POST.get('textoXML') )
         return render(request, "reproductor.html", dic)
         
     pass
 def recibirLista(request):
-    global listasReproduccion, listaActual
+    global listasReproduccion, listaActual, posicionLista
+    listaActual = None
+    posicionLista=0 
     if request.POST.get('listaSeleccionada'):
         listaActual = request.POST.get('listaSeleccionada')
-        print('ssss', len(listasReproduccion))
-        
+        # print('ssss', len(listasReproduccion))
+        # print(' la seleccionada es', listaActual)
         for i in listasReproduccion:
             if listaActual == i.nombre:
                 listaActual = i
-                print('entra')
-                nombre = i.canciones[0].nombre
-                artista = i.canciones[0].artista
-                album = i.canciones[0].album
+                # print('entra')
+                nombre = listaActual.canciones[posicionLista].nombre
+                artista = listaActual.canciones[posicionLista].artista
+                album = listaActual.canciones[posicionLista].album
+                imagen = listaActual.canciones[posicionLista].imagen
+                
                 break
-    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista}
+    
+    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
     return render(request, "reproductor.html", dic)
     pass
+def siguiente(request):
+    global listaActual, listasReproduccion, posicionLista
+    if posicionLista < (len(listaActual.canciones)-1):
+        posicionLista+=1
+        nombre = listaActual.canciones[posicionLista].nombre
+        artista = listaActual.canciones[posicionLista].artista
+        album = listaActual.canciones[posicionLista].album
+        imagen = listaActual.canciones[posicionLista].imagen
+
+    else:
+        nombre = listaActual.canciones[posicionLista].nombre
+        artista = listaActual.canciones[posicionLista].artista
+        album = listaActual.canciones[posicionLista].album
+        imagen = listaActual.canciones[posicionLista].imagen
+
+    # print(listaActual.nombre, 'zaza')
+    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
+    print("lista ac", len(listaActual.canciones))
+    return render(request, "reproductor.html", dic)
+    pass
+
+def anterior(request):
+    global listaActual, listasReproduccion, posicionLista
+    if posicionLista > 0:
+        posicionLista-=1
+        nombre = listaActual.canciones[posicionLista].nombre
+        artista = listaActual.canciones[posicionLista].artista
+        album = listaActual.canciones[posicionLista].album
+        imagen = listaActual.canciones[posicionLista].imagen
+
+    else:
+        nombre = listaActual.canciones[posicionLista].nombre
+        artista = listaActual.canciones[posicionLista].artista
+        album = listaActual.canciones[posicionLista].album
+        imagen = listaActual.canciones[posicionLista].imagen
+
+    # print(listaActual.nombre, 'zaza')
+    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
+    # print("lista ac", len(listaActual.canciones))
+    return render(request, "reproductor.html", dic)
