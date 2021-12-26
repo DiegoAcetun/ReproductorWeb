@@ -20,7 +20,7 @@
         <div class="mb-3 col-3">
             
             <h4 style="color: blueviolet;">Cargar CSV</h4>
-            <input name="csv" class="form-control" type="file" id="Ccsv" required>
+            <input name="csv" class="form-control" type="file" id="Ccsv" required accept=".csv">
         </div>
         
         <div class="btn-group" role="group" aria-label="Basic outlined example" style="position: relative; bottom: 55px; left: 400px;">
@@ -34,6 +34,18 @@
                 {% endfor %}
             </ul>
         {% endif %}
+        </div>
+    </form>
+
+    <form action="{% url 'cargarXML' %}" method="post"> {% csrf_token %}
+        <div class="mb-3 col-3">
+            
+            <h4 style="color: blueviolet;">Cargar XML</h4>
+            <input name="xml" class="form-control" type="file" id="Cxml" required accept=".xml">
+        </div>
+        
+        <div class="btn-group" role="group" aria-label="Basic outlined example" style="position: relative; bottom: 55px; left: 400px;">
+            <button class="btn btn-outline-primary">Cargar</button>
         </div>
     </form>
 
