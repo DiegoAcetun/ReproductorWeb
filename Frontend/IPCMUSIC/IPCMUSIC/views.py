@@ -4,8 +4,8 @@ from django.http import HttpResponse, request
 from django.shortcuts import render
 from IPCMUSIC.funciones import CSV, leerXML, verXML
 from django.contrib import messages
-import copy
-# print(contenidoXML, 'aqui')
+import requests
+import json
 contenidoXML = ''
 listasReproduccion = []
 listaCanciones = []
@@ -13,13 +13,14 @@ listaArtistas = []
 listaActual = None
 posicionLista=0
 listaReturnCSV=[]
+endpoint = 'http://localhost:5000{}'
 def saludo(request):
     dic = {'mostrar': 'a'}
     # if request.method=='GET':
     return render(request, "index.html", dic)
 
 def recibir(request):
-    global contenidoXML, listaReturnCSV
+    global contenidoXML, listaReturnCSV, endpoint
     contenidoXML=''
     listaReturnCSV=[]
 
@@ -30,6 +31,14 @@ def recibir(request):
         # post[0] = CSV(name)[0]
         listaReturnCSV = CSV(name)
         errorCSV = listaReturnCSV[0]
+
+        url = endpoint.format('/')
+        enviar = {
+	"user": 965412,
+	"pass": 1234
+}
+        requests.get(url, json=enviar)
+        
         if errorCSV == False:
 
             contenidoXML = listaReturnCSV[1]

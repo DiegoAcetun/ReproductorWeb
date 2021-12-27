@@ -153,7 +153,7 @@ def leerXML(contenido):
                     nuevoArtista = Artista(artista, vecesReproducida)
                     listaArtistas.append(nuevoArtista)
                     
-    #le pasamos las canciones corresponidentes a cada album
+    #le pasamos las canciones corresponidentes a cada lista
     for i in listaCanciones:
         for j in listasReproduccion:
             if i.listaReproduccion == j.nombre:
