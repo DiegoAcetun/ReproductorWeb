@@ -8,6 +8,8 @@ import copy
 # print(contenidoXML, 'aqui')
 contenidoXML = ''
 listasReproduccion = []
+listaCanciones = []
+listaArtistas = []
 listaActual = None
 posicionLista=0
 listaReturnCSV=[]
@@ -42,9 +44,21 @@ def recibir(request):
             dic = {'contenidoXML': contenidoXML}
             return render(request, "index.html", dic)
 def recibirXML(request):
-    global listasReproduccion
+    global listasReproduccion, listaCanciones, listaArtistas
     if request.POST.get('textoXML'):
-        listasReproduccion = leerXML(request.POST.get('textoXML'))[:]
+        returnFuncion = leerXML(request.POST.get('textoXML'))
+        listasReproduccion = returnFuncion[0][:]
+        listaArtistas = returnFuncion[1][:]
+        listaCanciones = returnFuncion[2][:]
+        print('*'*25)
+        print('artistas')
+        for i in listaArtistas:
+            print(i.nombre, i.reproducciones)
+
+        print('*'*25)
+        print('canciones')
+        for i in listaCanciones:
+            print(i.nombre)
         # messages.success(request, 'Archivo listo para analizar')
         # post[0] = CSV(name)[0]
         dic = {"Listas": listasReproduccion, 'Cancion':'', 'Album':'', 'Artista':'', 'Imagen':'Img/blanco.jpg'}
@@ -53,7 +67,7 @@ def recibirXML(request):
         
     pass
 def recibirLista(request):
-    global listasReproduccion, listaActual, posicionLista
+    global listasReproduccion, listaActual, posicionLista, listaArtistas
     listaActual = None
     posicionLista=0 
     if request.POST.get('listaSeleccionada'):
@@ -69,14 +83,20 @@ def recibirLista(request):
                 album = listaActual.canciones[posicionLista].album
                 imagen = listaActual.canciones[posicionLista].imagen
                 listaActual.canciones[posicionLista].reproducciones+=1
+                for j in listaArtistas:
+                    if listaActual.canciones[posicionLista].artista == j.nombre:
+                        j.reproducciones+=1
+                        break
                 break
+    #036
     for i in listaActual.canciones:
         print(i.reproducciones, 'rep')
+    
     dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
     return render(request, "reproductor.html", dic)
     pass
 def siguiente(request):
-    global listaActual, listasReproduccion, posicionLista
+    global listaActual, listasReproduccion, posicionLista, listaArtistas
     if posicionLista < (len(listaActual.canciones)-1):
         posicionLista+=1
         nombre = listaActual.canciones[posicionLista].nombre
@@ -84,6 +104,9 @@ def siguiente(request):
         album = listaActual.canciones[posicionLista].album
         imagen = listaActual.canciones[posicionLista].imagen
         listaActual.canciones[posicionLista].reproducciones+=1
+        for j in listaArtistas:
+                    if listaActual.canciones[posicionLista].artista == j.nombre:
+                        j.reproducciones+=1
 
     else:
         nombre = listaActual.canciones[posicionLista].nombre
@@ -99,7 +122,7 @@ def siguiente(request):
     pass
 
 def anterior(request):
-    global listaActual, listasReproduccion, posicionLista
+    global listaActual, listasReproduccion, posicionLista, listaArtistas
     if posicionLista > 0:
         posicionLista-=1
         nombre = listaActual.canciones[posicionLista].nombre
@@ -107,12 +130,15 @@ def anterior(request):
         album = listaActual.canciones[posicionLista].album
         imagen = listaActual.canciones[posicionLista].imagen
         listaActual.canciones[posicionLista].reproducciones+=1
+        for j in listaArtistas:
+                    if listaActual.canciones[posicionLista].artista == j.nombre:
+                        j.reproducciones+=1
     else:
         nombre = listaActual.canciones[posicionLista].nombre
         artista = listaActual.canciones[posicionLista].artista
         album = listaActual.canciones[posicionLista].album
         imagen = listaActual.canciones[posicionLista].imagen
-        
+
     for i in listaActual.canciones:
         print(i.reproducciones, 'rep')
     # print(listaActual.nombre, 'zaza')
@@ -129,3 +155,5 @@ def cargarXML(request):
 
     return render(request, "index.html", dic)
         
+def cancionesReproducidas(request):
+    return render(request, "cancionesReproducidas.html")

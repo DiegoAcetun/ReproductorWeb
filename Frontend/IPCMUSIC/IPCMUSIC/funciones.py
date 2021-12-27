@@ -2,6 +2,7 @@ import csv
 import re
 from IPCMUSIC.ListasReproduccion import ListasReproduccion
 from IPCMUSIC.Cancion import Cancion
+from IPCMUSIC.Artista import Artista
 import xml.etree.ElementTree as ET
 def CSV(archivoCsv):
     contenidoXML = '' 
@@ -105,6 +106,7 @@ def CSV(archivoCsv):
 def leerXML(contenido):
     listasReproduccion = []
     listaCanciones = []
+    listaArtistas = []
     archivo = open('archivo.xml', 'w')
     archivo.write(contenido)
     archivo.close()
@@ -137,6 +139,21 @@ def leerXML(contenido):
                     ruta = root[i][j][k].text
             nuevaCancion = Cancion(nuevaLista.nombre, nombre, artista, album, vecesReproducida, ruta, imagen)
             listaCanciones.append(nuevaCancion)
+            if len(listaArtistas)==0:
+                nuevoArtista = Artista(artista, vecesReproducida)
+                listaArtistas.append(nuevoArtista)
+            else:
+                artistaEncontrado = False
+                for k in listaArtistas:
+                    if artista == k.nombre:
+                        k.reproducciones+=vecesReproducida
+                        artistaEncontrado = True
+                        break
+                if artistaEncontrado == False:
+                    nuevoArtista = Artista(artista, vecesReproducida)
+                    listaArtistas.append(nuevoArtista)
+                    
+    #le pasamos las canciones corresponidentes a cada album
     for i in listaCanciones:
         for j in listasReproduccion:
             if i.listaReproduccion == j.nombre:
@@ -147,52 +164,10 @@ def leerXML(contenido):
     # print('*'*25)
     # for i in listaCanciones:
     #     print(i.nombre)
-    return listasReproduccion
+    return [listasReproduccion, listaArtistas, listaCanciones]
 
 
-def XML(nombre):
-    listasReproduccion = []
-    listaCanciones = []
-    tree = ET.parse(nombre)
-    root = tree.getroot()
-    # print('va bien', root[0])
-    for i in range(len(root)):
-        #root[0].tag es Lista
-        # print('el nombre de la lista es ', root[i].attrib["nombre"])
-        nuevaLista = ListasReproduccion(root[i].attrib["nombre"])
-        listasReproduccion.append(nuevaLista)
-        #Recorriendo etiqueta lista
-        for j in range(len(root[i])):
-            nombre = root[i][j].attrib["nombre"]
-            # print('name', nombre)
-            #recorriendo etiquetra cancion
-            for k in range(len(root[i][j])):
-                # print(root[i][j][k].tag, 'e c')
-                if root[i][j][k].tag == 'artista':
-                    artista = root[i][j][k].text
-                elif root[i][j][k].tag == 'album':
-                    album = root[i][j][k].text
-                    print('el album es', album)
 
-                elif root[i][j][k].tag == 'vecesReproducida':
-                    vecesReproducida = int(root[i][j][k].text)
-                elif root[i][j][k].tag == 'imagen':
-                    imagen = root[i][j][k].text
-                elif root[i][j][k].tag == 'ruta':
-                    ruta = root[i][j][k].text
-            nuevaCancion = Cancion(nuevaLista.nombre, nombre, artista, album, vecesReproducida, ruta, imagen)
-            listaCanciones.append(nuevaCancion)
-    for i in listaCanciones:
-        for j in listasReproduccion:
-            if i.listaReproduccion == j.nombre:
-                j.canciones.append(i)
-    
-    # for i in listasReproduccion:
-    #     i.verCanciones()
-    # print('*'*25)
-    # for i in listaCanciones:
-    #     print(i.nombre)
-    return listasReproduccion
 
 def verXML(ruta):
     archivo = open(ruta, 'r')
