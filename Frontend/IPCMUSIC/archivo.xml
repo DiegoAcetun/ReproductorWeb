@@ -4,7 +4,7 @@
     <cancion nombre="CancionA">
         <artista>ArtistaA</artista>
         <album>AlbumA</album>
-        <vecesReproducida>1</vecesReproducida>
+        <vecesReproducida>11</vecesReproducida>
         <imagen>Img/faded.jpg</imagen>
         <ruta>RutaA.mp3</ruta>
  </cancion>
@@ -43,7 +43,7 @@
     <cancion nombre="CancionC">
         <artista>ArtistaC</artista>
         <album>AlbumC</album>
-        <vecesReproducida>3</vecesReproducida>
+        <vecesReproducida>38</vecesReproducida>
         <imagen>Img/heroes.jpg</imagen>
         <ruta>RutaC.mp3</ruta>
  </cancion>

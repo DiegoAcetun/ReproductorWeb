@@ -32,12 +32,12 @@ def recibir(request):
         listaReturnCSV = CSV(name)
         errorCSV = listaReturnCSV[0]
 
-        url = endpoint.format('/')
-        enviar = {
-	"user": 965412,
-	"pass": 1234
-}
-        requests.get(url, json=enviar)
+#         url = endpoint.format('/')
+#         enviar = {
+# 	"ppp": 11,
+# 	"pass": 1234
+# }
+#         requests.get(url, json=enviar)
         
         if errorCSV == False:
 
@@ -59,13 +59,13 @@ def recibirXML(request):
         listasReproduccion = returnFuncion[0][:]
         listaArtistas = returnFuncion[1][:]
         listaCanciones = returnFuncion[2][:]
-        print('*'*25)
-        print('artistas')
+        # print('*'*25)
+        # print('artistas')
         for i in listaArtistas:
             print(i.nombre, i.reproducciones)
 
-        print('*'*25)
-        print('canciones')
+        # print('*'*25)
+        # print('canciones')
         for i in listaCanciones:
             print(i.nombre)
         # messages.success(request, 'Archivo listo para analizar')
@@ -98,8 +98,8 @@ def recibirLista(request):
                         break
                 break
     #036
-    for i in listaActual.canciones:
-        print(i.reproducciones, 'rep')
+    # for i in listaActual.canciones:
+    #     print(i.reproducciones, 'rep')
     
     dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
     return render(request, "reproductor.html", dic)
@@ -122,11 +122,11 @@ def siguiente(request):
         artista = listaActual.canciones[posicionLista].artista
         album = listaActual.canciones[posicionLista].album
         imagen = listaActual.canciones[posicionLista].imagen
-    for i in listaActual.canciones:
-        print(i.reproducciones, 'rep')
+    # for i in listaActual.canciones:
+    #     print(i.reproducciones, 'rep')
     # print(listaActual.nombre, 'zaza')
     dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
-    print("lista ac", len(listaActual.canciones))
+    # print("lista ac", len(listaActual.canciones))
     return render(request, "reproductor.html", dic)
     pass
 
@@ -165,4 +165,21 @@ def cargarXML(request):
     return render(request, "index.html", dic)
         
 def cancionesReproducidas(request):
+    global listaCanciones
+    #a lista datos canciones se le agregarán json
+    listaDatosCanciones = []
+    for i in listaCanciones:
+        diccionario = {
+            "nombreCancion": i.nombre,
+            "reproducciones": i.reproducciones
+        }
+        listaDatosCanciones.append(diccionario)
+
+    
+    url = endpoint.format('/')
+    respuesta = requests.post(url, json=listaDatosCanciones).text
+    respuesta = json.loads(respuesta)
+    # print(type(respuesta))
+    for i in respuesta:
+        print(i["nombreCancion"], i["reproducciones"])
     return render(request, "cancionesReproducidas.html")

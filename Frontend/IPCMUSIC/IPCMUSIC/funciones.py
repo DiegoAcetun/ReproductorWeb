@@ -10,7 +10,7 @@ def CSV(archivoCsv):
     listaCanciones = []
     errorCSV = False
     reNombre = re.compile("[a-zA-Z]+")
-    reReproducciones = re.compile("[0-9]")  
+    reReproducciones = re.compile("[0-9]+")  
     contenidoXML+='<?xml version="1.0" encoding="UTF-8"?>\n<ListasReproduccion>\n'
     name = archivoCsv
     with open(name) as f:
