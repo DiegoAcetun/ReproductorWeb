@@ -1,58 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListasReproduccion>
     <Lista nombre="ListaA">
-    <cancion nombre="CancionA">
+    <cancion nombre="Restos">
         <artista>ArtistaA</artista>
         <album>AlbumA</album>
         <vecesReproducida>11</vecesReproducida>
         <imagen>Img/faded.jpg</imagen>
-        <ruta>RutaA.mp3</ruta>
+        <ruta>OABzsNnXkKE</ruta>
  </cancion>
-    <cancion nombre="CancionD">
+    <cancion nombre="Beat">
         <artista>ArtistaA</artista>
         <album>AlbumB</album>
         <vecesReproducida>4</vecesReproducida>
         <imagen>Img/faded.jpg</imagen>
-        <ruta>RutaD.mp3</ruta>
+        <ruta>I2MWtD1awHY</ruta>
  </cancion>
-    <cancion nombre="CancionG">
+    <cancion nombre="Squad">
         <artista>ArtistaB</artista>
         <album>AlbumA</album>
         <vecesReproducida>7</vecesReproducida>
         <imagen>Img/heroes.jpg</imagen>
-        <ruta>RutaG.mp3</ruta>
+        <ruta>qAulP7p3tOQ</ruta>
  </cancion>
  </Lista>
     <Lista nombre="ListaB">
-    <cancion nombre="CancionB">
+    <cancion nombre="Cisne">
         <artista>ArtistaB</artista>
         <album>AlbumA</album>
         <vecesReproducida>2</vecesReproducida>
         <imagen>Img/alone.jpg</imagen>
-        <ruta>RutaB.mp3</ruta>
+        <ruta>GpDlbNYyAEU</ruta>
  </cancion>
-    <cancion nombre="CancionE">
+    <cancion nombre="Remake">
         <artista>ArtistaC</artista>
         <album>AlbumB</album>
         <vecesReproducida>5</vecesReproducida>
         <imagen>Img/alone.jpg</imagen>
-        <ruta>RutaE.mp3</ruta>
+        <ruta>FWm8OHi1AO0</ruta>
  </cancion>
  </Lista>
     <Lista nombre="ListaC">
-    <cancion nombre="CancionC">
-        <artista>ArtistaC</artista>
-        <album>AlbumC</album>
-        <vecesReproducida>38</vecesReproducida>
-        <imagen>Img/heroes.jpg</imagen>
-        <ruta>RutaC.mp3</ruta>
- </cancion>
-    <cancion nombre="CancionF">
+    <cancion nombre="Premiacion">
         <artista>ArtistaB</artista>
         <album>AlbumC</album>
         <vecesReproducida>6</vecesReproducida>
         <imagen>Img/faded.jpg</imagen>
-        <ruta>RutaF.mp3</ruta>
+        <ruta>Ho4YFqlpZp4</ruta>
  </cancion>
  </Lista>
 </ListasReproduccion>

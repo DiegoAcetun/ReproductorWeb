@@ -15,7 +15,11 @@ def CSV(archivoCsv):
     name = archivoCsv
     with open(name) as f:
         reader = csv.reader(f)
+        encabezados = True
         for row in reader:
+            if encabezados:
+                encabezados = False
+                continue
             # print(reNombre.fullmatch("asiuss oo"))
             if reNombre.fullmatch(row[0]) is not None:
                 if len(listasReproduccion)>0:
@@ -56,16 +60,17 @@ def CSV(archivoCsv):
             else:
                 errorCSV = True      
                 break
-            if row[5].endswith('.mp3'):
-                pass
-            else:
-                errorCSV = True      
-                break
-            if row[6].endswith('.jpg'):
-                pass
-            else:
-                errorCSV = True      
-                break
+            # if row[5].endswith('.mp3'):
+            #     pass
+            # else:
+            #     errorCSV = True      
+            #     break
+            # if row[6].endswith('.jpg'):
+            #     pass
+            # else:
+            #     errorCSV = True      
+            #     break
+
             nuevaCancion = Cancion(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
             listaCanciones.append(nuevaCancion)
             # print(f'{row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}')

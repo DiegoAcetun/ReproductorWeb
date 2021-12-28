@@ -20,18 +20,26 @@
     <select name="listaSeleccionada" class="form-select" aria-label="Default select example" style="width: 300px; position: relative; left: 65px;">
         <!-- <option selected>Open this select menu</option> -->
         {% for lista in Listas %}
+            {% if lista.nombre == ListaActual  %}
+            <option selected>{{lista.nombre}}</option>   
 
+        {% else %}
         <option>{{lista.nombre}}</option>
+        {% endif %}
+
         {% endfor %}
     </select>
     <!-- <button style="top: 50px; position: relative; left: 50px;">  -->
-        <div data-video={{video}}
+    
+        <div class="btn-group" role="group" aria-label="Basic outlined example" style="left: 370px; bottom: 40px;">
+            <button class="btn btn-outline-primary">Seleccionar</button>
+        </div>
+    </form>
+    <div data-video={{ruta}}
         data-autoplay="0"
         data-loop="1"
         id="youtube-audio" style="top: 20px; position: relative; left: 175px;">
     </div>
-    </button>
-    </form>
     <!-- <form action="">
         <button style="bottom: 85px; position: relative; left: 300px;"> <img src='{% static "Img/pausa1.png" %}'/></button>
 
