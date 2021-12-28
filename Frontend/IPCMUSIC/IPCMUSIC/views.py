@@ -73,7 +73,7 @@ def recibirXML(request):
         # messages.success(request, 'Archivo listo para analizar')
         # post[0] = CSV(name)[0]
         dic = {"Listas": listasReproduccion, 'Cancion':listaActual.canciones[0].nombre, 'Album':listaActual.canciones[0].album, 
-        'Artista':listaActual.canciones[0].artista, 'Imagen':listaActual.canciones[0].imagen, "ruta": listaActual.canciones[0].ruta,
+        'Artista':listaActual.canciones[0].artista, 'Imagen':listaActual.canciones[0].imagen, "Ruta": listaActual.canciones[0].ruta,
         "ListaActual": listasReproduccion[0].nombre}
         # print('imprimiendo contenido', request.POST.get('textoXML') )
         return render(request, "reproductor.html", dic)
@@ -107,7 +107,7 @@ def recibirLista(request):
     # for i in listaActual.canciones:
     #     print(i.reproducciones, 'rep')
     
-    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, "ruta": ruta,
+    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, "Ruta": ruta,
     "ListaActual": listaActual.nombre}
     return render(request, "reproductor.html", dic)
     pass
@@ -135,7 +135,7 @@ def siguiente(request):
     # for i in listaActual.canciones:
     #     print(i.reproducciones, 'rep')
     # print(listaActual.nombre, 'zaza')
-    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, "ruta": ruta,
+    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, "Ruta": ruta,
     "ListaActual": listaActual}
     # print("lista ac", len(listaActual.canciones))
     return render(request, "reproductor.html", dic)
@@ -149,6 +149,7 @@ def anterior(request):
         artista = listaActual.canciones[posicionLista].artista
         album = listaActual.canciones[posicionLista].album
         imagen = listaActual.canciones[posicionLista].imagen
+        ruta = listaActual.canciones[posicionLista].ruta
         listaActual.canciones[posicionLista].reproducciones+=1
         for j in listaArtistas:
                     if listaActual.canciones[posicionLista].artista == j.nombre:
@@ -158,11 +159,13 @@ def anterior(request):
         artista = listaActual.canciones[posicionLista].artista
         album = listaActual.canciones[posicionLista].album
         imagen = listaActual.canciones[posicionLista].imagen
+        ruta = listaActual.canciones[posicionLista].ruta
 
     for i in listaActual.canciones:
         print(i.reproducciones, 'rep')
     # print(listaActual.nombre, 'zaza')
-    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
+    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, 'Ruta': ruta,
+    'ListaActual': listaActual}
     # print("lista ac", len(listaActual.canciones))
     return render(request, "reproductor.html", dic)
 
