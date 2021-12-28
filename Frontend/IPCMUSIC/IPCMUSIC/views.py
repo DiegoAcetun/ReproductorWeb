@@ -70,7 +70,7 @@ def recibirXML(request):
             print(i.nombre)
         # messages.success(request, 'Archivo listo para analizar')
         # post[0] = CSV(name)[0]
-        dic = {"Listas": listasReproduccion, 'Cancion':'', 'Album':'', 'Artista':'', 'Imagen':'Img/blanco.jpg'}
+        dic = {"Listas": listasReproduccion, 'Cancion':'', 'Album':'', 'Artista':'', 'Imagen':'Img/blanco.jpg', "video": "GpDlbNYyAEU"}
         # print('imprimiendo contenido', request.POST.get('textoXML') )
         return render(request, "reproductor.html", dic)
         
@@ -101,7 +101,7 @@ def recibirLista(request):
     # for i in listaActual.canciones:
     #     print(i.reproducciones, 'rep')
     
-    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
+    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, "video": "GpDlbNYyAEU"}
     return render(request, "reproductor.html", dic)
     pass
 def siguiente(request):
@@ -125,7 +125,7 @@ def siguiente(request):
     # for i in listaActual.canciones:
     #     print(i.reproducciones, 'rep')
     # print(listaActual.nombre, 'zaza')
-    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen}
+    dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, "video": "OABzsNnXkKE"}
     # print("lista ac", len(listaActual.canciones))
     return render(request, "reproductor.html", dic)
     pass

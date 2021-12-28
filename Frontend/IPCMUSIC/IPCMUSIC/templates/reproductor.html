@@ -24,23 +24,29 @@
         <option>{{lista.nombre}}</option>
         {% endfor %}
     </select>
-    <button style="top: 50px; position: relative; left: 50px;"> <img src='{% static "Img/play1.png" %}'/></button>
+    <!-- <button style="top: 50px; position: relative; left: 50px;">  -->
+        <div data-video={{video}}
+        data-autoplay="0"
+        data-loop="1"
+        id="youtube-audio" style="top: 20px; position: relative; left: 175px;">
+    </div>
+    </button>
     </form>
-    <form action="">
+    <!-- <form action="">
         <button style="bottom: 85px; position: relative; left: 300px;"> <img src='{% static "Img/pausa1.png" %}'/></button>
 
-    </form>
+    </form> -->
     <form action="{% url 'anterior' %}" method="post"> {% csrf_token %}
-        <button style="top: 0px; position: relative; left: 50px;"> <img src='{% static "Img/anterior.png" %}'/></button>
+        <button style="top: 50px; position: relative; left: 50px;"> <img src='{% static "Img/anterior.png" %}'/></button>
         
     </form>
-    <form action="{% url 'siguiente' %}" method="post"> {% csrf_token %}
-        <button style="bottom: 130px; position: relative; left: 300px;"> <img src='{% static "Img/next.png" %}'/></button>
+    <form action="{% url 'siguiente' %}" method="post"  id="formNext"> {% csrf_token %}
+        <button style="bottom: 80px; position: relative; left: 300px;"> <img src='{% static "Img/next.png" %}'/></button>
         
     </form>
 
     <form action="">
-        <button style="bottom: 85px; position: relative; left: 180px;"> <img src='{% static "Img/stop.png" %}'/></button>
+        <button style="bottom: 50px; position: relative; left: 170px;"> <img src='{% static "Img/stop.png" %}'/></button>
 
     </form>
     
@@ -68,6 +74,15 @@
             <button class="btn btn-outline-primary">Analizar</button>
         </div>
     </form>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>
+  <script>
+    const botonNext = document.getElementById('youtube-audio')
+    botonNext.addEventListener("submit", function(event){
+    console.log('hahah')
+})
+  </script>
     <!-- <script src='{% static "js/reproductor.js" %}'>
         
     </script> -->

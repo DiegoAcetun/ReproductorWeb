@@ -12,7 +12,7 @@ def recibirDatosCanciones():
     cancionesMasReproducidas = []
     canciones = request.json
     for i in canciones:
-        print(i["nombreCancion"], i["reproducciones"])
+        # print(i["nombreCancion"], i["reproducciones"])
         listaAux = []
         listaAux.append(i["nombreCancion"])
         listaAux.append(i["reproducciones"])
