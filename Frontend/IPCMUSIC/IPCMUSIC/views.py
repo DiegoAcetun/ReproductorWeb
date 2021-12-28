@@ -13,6 +13,7 @@ listaArtistas = []
 listaActual = None
 posicionLista=0
 listaReturnCSV=[]
+from matplotlib import pyplot
 endpoint = 'http://localhost:5000{}'
 def saludo(request):
     dic = {'mostrar': 'a'}
@@ -136,7 +137,7 @@ def siguiente(request):
     #     print(i.reproducciones, 'rep')
     # print(listaActual.nombre, 'zaza')
     dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, "Ruta": ruta,
-    "ListaActual": listaActual}
+    "ListaActual": listaActual.nombre}
     # print("lista ac", len(listaActual.canciones))
     return render(request, "reproductor.html", dic)
     pass
@@ -165,7 +166,7 @@ def anterior(request):
         print(i.reproducciones, 'rep')
     # print(listaActual.nombre, 'zaza')
     dic = {"Listas": listasReproduccion, 'Cancion': nombre, 'Album':album, 'Artista': artista, 'Imagen': imagen, 'Ruta': ruta,
-    'ListaActual': listaActual}
+    'ListaActual': listaActual.nombre}
     # print("lista ac", len(listaActual.canciones))
     return render(request, "reproductor.html", dic)
 
@@ -194,6 +195,19 @@ def cancionesReproducidas(request):
     respuesta = requests.post(url, json=listaDatosCanciones).text
     respuesta = json.loads(respuesta)
     # print(type(respuesta))
+    graficarCancionesReproducidad(respuesta)
     for i in respuesta:
         print(i["nombreCancion"], i["reproducciones"])
     return render(request, "cancionesReproducidas.html")
+
+def graficarCancionesReproducidad(topCanciones):
+    ejeY = []
+    ejeX = []
+    colores = ['purple', 'red', 'blue']
+    for i in topCanciones:
+        ejeX.append(i["nombreCancion"])
+        ejeY.append(i["reproducciones"])
+    pyplot.bar(ejeX, height=ejeY, width=0.5, color=colores)
+    pyplot.ylabel('Reproducciones')
+    # pyplot.show()
+    pyplot.savefig('IPCMUSIC/static/Img/graf.png')
