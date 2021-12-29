@@ -6,9 +6,9 @@ from IPCMUSIC.funciones import CSV, leerXML, verXML
 from django.contrib import messages
 import requests
 import json
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import time
-
+from aiohttp import ClientSession
 contenidoXML = ''
 listasReproduccion = []
 listaCanciones = []
@@ -208,7 +208,7 @@ def peticiones(request):
         datosCanciones()
         return render(request, "cancionesReproducidas.html")
     
-    if peticion == 'Artistas mas reproducidos':
+    elif peticion == 'Artistas mas reproducidos':
         # listaDatosArtistas = []
         # for i in listaArtistas:
         #     diccionario = {
@@ -242,16 +242,20 @@ def datosCanciones():
     #     print(i["nombreCancion"], i["reproducciones"])
 
 def graficarCancionesReproducidas(topCanciones):
+    import matplotlib.pyplot as plt
+
     ejeY = []
     ejeX = []
     colores = ['purple', 'red', 'blue']
     for i in topCanciones:
         ejeX.append(i["nombreCancion"])
         ejeY.append(i["reproducciones"])
-    pyplot.bar(ejeX, height=ejeY, width=0.5, color=colores)
-    pyplot.ylabel('Reproducciones')
+    plt.bar(ejeX, height=ejeY, width=0.5, color=colores)
+    plt.ylabel('Reproducciones')
+    # plt.draw()
+    plt.savefig('IPCMUSIC/static/Img/CancionesEsuchadas.png')
+    plt.close()
     # pyplot.show()
-    pyplot.savefig('IPCMUSIC/static/Img/CancionesEsuchadas.png')
 
 def datosArtistas():
     global listaArtistas
@@ -268,6 +272,8 @@ def datosArtistas():
     graficarArtistasReproducidos(respuesta)
 
 def graficarArtistasReproducidos(topArtistas):
+    import matplotlib.pyplot as plt
+
     adentro =[]
     afuera = []
     for i in topArtistas:
@@ -275,5 +281,9 @@ def graficarArtistasReproducidos(topArtistas):
         afuera.append(i["nombreArtista"])
 
     plt.pie(adentro, labels=afuera, autopct="%0.1f %%")
+    # plt.draw()
     plt.savefig("IPCMUSIC/static/Img/ArtistasEscuchados.png")
+    plt.close()
+
+    # plt.show()
     
