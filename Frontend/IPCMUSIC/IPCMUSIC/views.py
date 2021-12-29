@@ -181,7 +181,10 @@ def cargarXML(request):
     # messages.success(request, 'El CSV no tiene errores')
 
     return render(request, "index.html", dic)
-        
+
+def documentacion(request):
+    return render(request, "documentacion.html")
+
 def peticiones(request):
     global listaCanciones, listaArtistas
     #a lista datos canciones se le agregarán json

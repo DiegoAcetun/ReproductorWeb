@@ -17,7 +17,7 @@ from os import O_CREAT, name
 from django.contrib import admin
 from django.urls import path
 from IPCMUSIC.views import saludo, recibir, recibirXML, recibirLista, siguiente, anterior, cargarXML
-from IPCMUSIC.views import peticiones
+from IPCMUSIC.views import peticiones, documentacion
 # from IPCMUSIC import views
 urlpatterns = [
     path('', saludo, name='saludo'),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('anterior/', anterior, name='anterior'),
     path('cargarXML/', cargarXML, name='cargarXML'),
     path('peticiones/', peticiones, name='peticiones'),
+    path('documentacion/', documentacion, name='documentacion'),
 
 ]
