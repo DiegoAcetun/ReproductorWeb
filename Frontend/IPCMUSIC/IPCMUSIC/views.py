@@ -6,6 +6,9 @@ from IPCMUSIC.funciones import CSV, leerXML, verXML
 from django.contrib import messages
 import requests
 import json
+import matplotlib.pyplot as plt
+import time
+
 contenidoXML = ''
 listasReproduccion = []
 listaCanciones = []
@@ -179,9 +182,48 @@ def cargarXML(request):
 
     return render(request, "index.html", dic)
         
-def cancionesReproducidas(request):
-    global listaCanciones
+def peticiones(request):
+    global listaCanciones, listaArtistas
     #a lista datos canciones se le agregarán json
+    print('*'*25)
+    print(request.POST.get('peticiones'), 'pppp')
+    peticion = request.POST.get('peticiones')
+    if peticion == 'Canciones mas escuchadas':
+        # listaDatosCanciones = []
+        # for i in listaCanciones:
+        #     diccionario = {
+        #         "nombreCancion": i.nombre,
+        #         "reproducciones": i.reproducciones
+        #     }
+        #     listaDatosCanciones.append(diccionario)
+
+        
+        # url = endpoint.format('/CancionesEscuchadas')
+        # respuesta = requests.post(url, json=listaDatosCanciones).text
+        # respuesta = json.loads(respuesta)
+        # # print(type(respuesta))
+        # graficarCancionesReproducidad(respuesta)
+        # for i in respuesta:
+        #     print(i["nombreCancion"], i["reproducciones"])
+        datosCanciones()
+        return render(request, "cancionesReproducidas.html")
+    
+    if peticion == 'Artistas mas reproducidos':
+        # listaDatosArtistas = []
+        # for i in listaArtistas:
+        #     diccionario = {
+        #         "nombreArtista": i.nombre,
+        #         "reproducciones": i.reproducciones
+        #     }
+        #     listaDatosArtistas.append(diccionario)
+        # url = endpoint.format('/ArtistasEscuchados')
+        # respuesta = requests.post(url, json=listaDatosArtistas).text
+        # respuesta = json.loads(respuesta)
+        # graficarArtistasReproducidos(respuesta)
+        datosArtistas()
+        return render(request, "artistasReproducidos.html")
+def datosCanciones():
+    global listaCanciones
     listaDatosCanciones = []
     for i in listaCanciones:
         diccionario = {
@@ -191,16 +233,15 @@ def cancionesReproducidas(request):
         listaDatosCanciones.append(diccionario)
 
     
-    url = endpoint.format('/')
+    url = endpoint.format('/CancionesEscuchadas')
     respuesta = requests.post(url, json=listaDatosCanciones).text
     respuesta = json.loads(respuesta)
     # print(type(respuesta))
-    graficarCancionesReproducidad(respuesta)
-    for i in respuesta:
-        print(i["nombreCancion"], i["reproducciones"])
-    return render(request, "cancionesReproducidas.html")
+    graficarCancionesReproducidas(respuesta)
+    # for i in respuesta:
+    #     print(i["nombreCancion"], i["reproducciones"])
 
-def graficarCancionesReproducidad(topCanciones):
+def graficarCancionesReproducidas(topCanciones):
     ejeY = []
     ejeX = []
     colores = ['purple', 'red', 'blue']
@@ -210,4 +251,29 @@ def graficarCancionesReproducidad(topCanciones):
     pyplot.bar(ejeX, height=ejeY, width=0.5, color=colores)
     pyplot.ylabel('Reproducciones')
     # pyplot.show()
-    pyplot.savefig('IPCMUSIC/static/Img/graf.png')
+    pyplot.savefig('IPCMUSIC/static/Img/CancionesEsuchadas.png')
+
+def datosArtistas():
+    global listaArtistas
+    listaDatosArtistas = []
+    for i in listaArtistas:
+        diccionario = {
+            "nombreArtista": i.nombre,
+            "reproducciones": i.reproducciones
+        }
+        listaDatosArtistas.append(diccionario)
+    url = endpoint.format('/ArtistasEscuchados')
+    respuesta = requests.post(url, json=listaDatosArtistas).text
+    respuesta = json.loads(respuesta)
+    graficarArtistasReproducidos(respuesta)
+
+def graficarArtistasReproducidos(topArtistas):
+    adentro =[]
+    afuera = []
+    for i in topArtistas:
+        adentro.append(i["reproducciones"])
+        afuera.append(i["nombreArtista"])
+
+    plt.pie(adentro, labels=afuera, autopct="%0.1f %%")
+    plt.savefig("IPCMUSIC/static/Img/ArtistasEscuchados.png")
+    

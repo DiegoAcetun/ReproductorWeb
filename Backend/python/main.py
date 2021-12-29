@@ -1,3 +1,4 @@
+import re
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -6,7 +7,8 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origin": "*"}})
 
 cancionesMasReproducidas = []
-@app.route("/", methods=['POST'])
+topArtistas = []
+@app.route("/CancionesEscuchadas", methods=['POST'])
 def recibirDatosCanciones():
     global cancionesMasReproducidas
     cancionesMasReproducidas = []
@@ -36,6 +38,28 @@ def recibirDatosCanciones():
     for i in range(5):
         respuesta.append({"nombreCancion": cancionesMasReproducidas[i][0], "reproducciones": cancionesMasReproducidas[i][1]})
         
+    return jsonify(respuesta)
+@app.route("/ArtistasEscuchados", methods=['POST'])
+def artistasMasEscuchados():
+    global topArtistas
+    topArtistas = []
+    artistas = request.json
+    print(artistas)
+    for i in artistas:
+        listaAuxArtistas = []
+        listaAuxArtistas.append(i["nombreArtista"])
+        listaAuxArtistas.append(i["reproducciones"])
+        topArtistas.append(listaAuxArtistas[:])
+    for i in range (len(topArtistas)-1):      
+        for j in range(len(topArtistas)-1):
+            if topArtistas[j][1]<topArtistas[j+1][1]:
+                tmp = topArtistas[j]
+                topArtistas[j] = topArtistas[j+1]
+                topArtistas[j+1] = tmp
+    respuesta = []
+    for i in range(3):
+        respuesta.append({"nombreArtista": topArtistas[i][0], "reproducciones": topArtistas[i][1]})
+
     return jsonify(respuesta)
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

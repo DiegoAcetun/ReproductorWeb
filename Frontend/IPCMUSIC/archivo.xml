@@ -4,7 +4,7 @@
     <cancion nombre="Restos">
         <artista>ArtistaA</artista>
         <album>AlbumA</album>
-        <vecesReproducida>11</vecesReproducida>
+        <vecesReproducida>54</vecesReproducida>
         <imagen>Img/faded.jpg</imagen>
         <ruta>OABzsNnXkKE</ruta>
  </cancion>
@@ -18,7 +18,7 @@
     <cancion nombre="Squad">
         <artista>ArtistaB</artista>
         <album>AlbumA</album>
-        <vecesReproducida>7</vecesReproducida>
+        <vecesReproducida>1</vecesReproducida>
         <imagen>Img/heroes.jpg</imagen>
         <ruta>qAulP7p3tOQ</ruta>
  </cancion>
@@ -34,7 +34,7 @@
     <cancion nombre="Remake">
         <artista>ArtistaC</artista>
         <album>AlbumB</album>
-        <vecesReproducida>5</vecesReproducida>
+        <vecesReproducida>200</vecesReproducida>
         <imagen>Img/alone.jpg</imagen>
         <ruta>FWm8OHi1AO0</ruta>
  </cancion>
@@ -43,7 +43,7 @@
     <cancion nombre="Premiacion">
         <artista>ArtistaB</artista>
         <album>AlbumC</album>
-        <vecesReproducida>6</vecesReproducida>
+        <vecesReproducida>2</vecesReproducida>
         <imagen>Img/faded.jpg</imagen>
         <ruta>Ho4YFqlpZp4</ruta>
  </cancion>

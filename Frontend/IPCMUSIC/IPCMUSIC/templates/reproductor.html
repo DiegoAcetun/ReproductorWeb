@@ -68,7 +68,7 @@
         <h5>ARTISTA: {{Artista}}</h5>
     </div>
     
-    <form action="{% url 'cancionesRep' %}" style="position: relative; left: 500px; bottom: 950px;" method="post"> {% csrf_token %}
+    <form action="{% url 'peticiones' %}" style="position: relative; left: 500px; bottom: 950px;" method="post"> {% csrf_token %}
         <h4 style="color: blueviolet;">Peticiones</h4>
         <select name="peticiones" class="form-select" aria-label="Default select example" style="width: 300px;">
             <!-- <option selected>Open this select menu</option> -->

@@ -1,7 +1,7 @@
 Nombre,Cancion,Artista,Album,Reproducciones,Ruta,Imagen
-ListaA,Restos,ArtistaA,AlbumA,11,OABzsNnXkKE,Img/faded.jpg
+ListaA,Restos,ArtistaA,AlbumA,54,OABzsNnXkKE,Img/faded.jpg
 ListaB,Cisne,ArtistaB,AlbumA,2,GpDlbNYyAEU,Img/alone.jpg
 ListaA,Beat,ArtistaA,AlbumB,4,I2MWtD1awHY,Img/faded.jpg
-ListaB,Remake,ArtistaC,AlbumB,5,FWm8OHi1AO0,Img/alone.jpg
-ListaC,Premiacion,ArtistaB,AlbumC,6,Ho4YFqlpZp4,Img/faded.jpg
-ListaA,Squad,ArtistaB,AlbumA,7,qAulP7p3tOQ,Img/heroes.jpg
+ListaB,Remake,ArtistaC,AlbumB,200,FWm8OHi1AO0,Img/alone.jpg
+ListaC,Premiacion,ArtistaB,AlbumC,2,Ho4YFqlpZp4,Img/faded.jpg
+ListaA,Squad,ArtistaB,AlbumA,1,qAulP7p3tOQ,Img/heroes.jpg
