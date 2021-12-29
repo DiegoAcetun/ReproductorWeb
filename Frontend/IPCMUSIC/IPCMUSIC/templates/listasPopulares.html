@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        table, th, td {
+        border: 1px solid black;
+            border-collapse: collapse;
+            }
+            </style>
+</head>
+<body>
+    <form action="">
+        <h1 style="color: blueviolet; text-align: center;">CANCIONES MÁS ESCUCHADAS</h1>        <!-- mostrar grafica sin tabla -->
+
+        <table style="margin: 0 auto; width:75%">
+            <th>Lista de reproduccion</th>
+            
+            <th>Numero de Canciones</th> 
+            {% for lista in listasPopulares %}
+            <tr>
+                <td>{{lista.nombreLista}}</td>
+                <td>{{lista.numeroCanciones}}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>

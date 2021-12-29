@@ -6,7 +6,7 @@ from IPCMUSIC.funciones import CSV, leerXML, verXML
 from django.contrib import messages
 import requests
 import json
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import time
 from aiohttp import ClientSession
 contenidoXML = ''
@@ -222,6 +222,14 @@ def peticiones(request):
         # graficarArtistasReproducidos(respuesta)
         datosArtistas()
         return render(request, "artistasReproducidos.html")
+    elif peticion == 'Listas mas populares':
+        datos = datosListasPopulares()
+        print(datos, 'oaoao')
+        diccionario = { "listasPopulares": datos
+
+        }
+        return render(request, "listasPopulares.html", diccionario)
+        
 def datosCanciones():
     global listaCanciones
     listaDatosCanciones = []
@@ -242,7 +250,6 @@ def datosCanciones():
     #     print(i["nombreCancion"], i["reproducciones"])
 
 def graficarCancionesReproducidas(topCanciones):
-    import matplotlib.pyplot as plt
 
     ejeY = []
     ejeX = []
@@ -272,7 +279,6 @@ def datosArtistas():
     graficarArtistasReproducidos(respuesta)
 
 def graficarArtistasReproducidos(topArtistas):
-    import matplotlib.pyplot as plt
 
     adentro =[]
     afuera = []
@@ -286,4 +292,18 @@ def graficarArtistasReproducidos(topArtistas):
     plt.close()
 
     # plt.show()
+def datosListasPopulares():
+    global listasReproduccion, endpoint
+    listaDatosListas = []
+    for i in listasReproduccion:
+        diccionario = {
+            "nombreLista": i.nombre,
+            "numeroCanciones": len(i.canciones)
+        }
+        listaDatosListas.append(diccionario)
+    url = endpoint.format('/ListasPopulares')
+    respuesta = requests.post(url, json=listaDatosListas).text
+    respuesta = json.loads(respuesta)
+    return respuesta
     
+
