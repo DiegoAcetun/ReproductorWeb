@@ -16,15 +16,19 @@ listaArtistas = []
 listaActual = None
 posicionLista=0
 listaReturnCSV=[]
+errorCSV1 = False
+e = True
 from matplotlib import pyplot
 endpoint = 'http://localhost:5000{}'
 def saludo(request):
+    global e
+    e = True
     dic = {'mostrar': 'a'}
     # if request.method=='GET':
     return render(request, "index.html", dic)
 
 def recibir(request):
-    global contenidoXML, listaReturnCSV, endpoint
+    global contenidoXML, listaReturnCSV, endpoint, errorCSV1, e
     contenidoXML=''
     listaReturnCSV=[]
 
@@ -35,7 +39,9 @@ def recibir(request):
         # post[0] = CSV(name)[0]
         listaReturnCSV = CSV(name)
         errorCSV = listaReturnCSV[0]
-
+        if e:
+            errorCSV1 = errorCSV
+            e = False
 #         url = endpoint.format('/')
 #         enviar = {
 # 	"ppp": 11,
@@ -67,13 +73,13 @@ def recibirXML(request):
         # print('artistas')
         listaActual = listasReproduccion[0]
         
-        for i in listaArtistas:
-            print(i.nombre, i.reproducciones)
+        # for i in listaArtistas:
+        #     print(i.nombre, i.reproducciones)
 
         # print('*'*25)
         # print('canciones')
-        for i in listaCanciones:
-            print(i.nombre)
+        # for i in listaCanciones:
+        #     print(i.nombre)
         # messages.success(request, 'Archivo listo para analizar')
         # post[0] = CSV(name)[0]
         dic = {"Listas": listasReproduccion, 'Cancion':listaActual.canciones[0].nombre, 'Album':listaActual.canciones[0].album, 
@@ -102,6 +108,8 @@ def recibirLista(request):
                 imagen = listaActual.canciones[posicionLista].imagen
                 ruta = listaActual.canciones[posicionLista].ruta
                 listaActual.canciones[posicionLista].reproducciones+=1
+                listaActual.reproducciones+=1
+                print(listaActual.nombre, listaActual.reproducciones)
                 for j in listaArtistas:
                     if listaActual.canciones[posicionLista].artista == j.nombre:
                         j.reproducciones+=1
@@ -185,8 +193,22 @@ def cargarXML(request):
 def documentacion(request):
     return render(request, "documentacion.html")
 
+def informacion(request):
+    return render(request, "informacion.html")
+
+def errores(request):
+    global errorCSV1
+    if errorCSV1:
+        dic = {
+            "mensaje": "El csv contenía errores"
+        }
+    else:
+        dic = {
+            "mensaje": "El csv no contenía errores"
+        }
+    return render(request, "errores.html", dic)
 def peticiones(request):
-    global listaCanciones, listaArtistas
+    global listaCanciones, listaArtistas, listasReproduccion
     #a lista datos canciones se le agregarán json
     print('*'*25)
     print(request.POST.get('peticiones'), 'pppp')
@@ -232,7 +254,11 @@ def peticiones(request):
 
         }
         return render(request, "listasPopulares.html", diccionario)
-        
+    elif peticion == 'Listas mas escuchadas':
+        datosListasEscuchadas()
+        return render(request, "listasEscuchadas.html")
+
+
 def datosCanciones():
     global listaCanciones
     listaDatosCanciones = []
@@ -308,5 +334,32 @@ def datosListasPopulares():
     respuesta = requests.post(url, json=listaDatosListas).text
     respuesta = json.loads(respuesta)
     return respuesta
-    
 
+def datosListasEscuchadas():
+    global listasReproduccion
+    listaDatosReproducciones = []
+    for i in listasReproduccion:
+        diccionario = {
+            "nombreLista": i.nombre,
+            "reproducciones": i.reproducciones
+        }
+        listaDatosReproducciones.append(diccionario)
+    url = endpoint.format('/ListasEscuchadas')
+    respuesta = requests.post(url, json=listaDatosReproducciones).text
+    respuesta = json.loads(respuesta)
+    graficarListasEsuchadas(respuesta)
+
+def graficarListasEsuchadas(topListas):
+    print('graficando listas escuchadas')
+    ejeY = []
+    ejeX = []
+    colores = ['red', 'blue']
+    for i in topListas:
+        ejeX.append(i["nombreLista"])
+        ejeY.append(i["reproducciones"])
+    plt.bar(ejeX, height=ejeY, width=0.5, color=colores)
+    plt.ylabel('Reproducciones')
+    # plt.draw()
+    plt.savefig('IPCMUSIC/static/Img/ListasEscuchadas.png')
+    plt.close()
+    # pyplot.show()

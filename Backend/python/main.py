@@ -90,6 +90,31 @@ def listasMasPopulares():
         else:
             break
     return jsonify(respuesta)
+
+@app.route("/ListasEscuchadas", methods=['POST'])
+def listasMasEscuchadas():
+    listasEscuchadas = []
+    listas = request.json
+    for i in listas:
+        listaAux = []
+        listaAux.append(i["nombreLista"])
+        listaAux.append(i["reproducciones"])
+        listasEscuchadas.append(listaAux)
+
+    for i in range (len(listasEscuchadas)-1):      
+        for j in range(len(listasEscuchadas)-1):
+            if listasEscuchadas[j][1]<listasEscuchadas[j+1][1]:
+                tmp = listasEscuchadas[j]
+                listasEscuchadas[j] = listasEscuchadas[j+1]
+                listasEscuchadas[j+1] = tmp
+    respuesta = []
+    for i in range(5):
+        if i < len(listasEscuchadas):
+            respuesta.append({"nombreLista": listasEscuchadas[i][0], "reproducciones": listasEscuchadas[i][1]})
+        else:
+            break
+    return jsonify(respuesta)
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
 

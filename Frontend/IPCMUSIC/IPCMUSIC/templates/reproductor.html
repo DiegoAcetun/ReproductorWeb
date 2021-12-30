@@ -59,7 +59,7 @@
     </form>
     
     <div>
-        <img src='{% static "Img/blanco.jpg" %}' style="position: relative; left: 500px; bottom: 600px; height: 300px; width: 300px;" alt="">
+        <img src="{{Imagen}}" style="position: relative; left: 500px; bottom: 600px; height: 300px; width: 300px;" alt="">
     </div>
     
     <div style="background-color: cornflowerblue; height: 400px; width: 600px; position: relative; left: 900px; bottom: 900px;">
@@ -91,7 +91,16 @@
             <button class="btn btn-outline-primary">Ver Documentacion</button>
         </div>
     </form>
-
+    <form action="{% url 'informacion' %}" style="bottom: 940px; left: 700px; position: relative;">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button class="btn btn-outline-primary">Imformacion del estudiante</button>
+        </div>
+    </form>
+    <form action="{% url 'errores' %}" style="bottom: 980px; left: 950px; position: relative;">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button class="btn btn-outline-primary">Reporte de errores</button>
+        </div>
+    </form>
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>
   <script>

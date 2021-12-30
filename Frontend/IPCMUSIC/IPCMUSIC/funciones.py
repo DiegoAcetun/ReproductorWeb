@@ -109,6 +109,7 @@ def CSV(archivoCsv):
     return [errorCSV, contenidoXML]
 
 def leerXML(contenido):
+    # print('en leer cml')
     listasReproduccion = []
     listaCanciones = []
     listaArtistas = []
@@ -134,7 +135,7 @@ def leerXML(contenido):
                     artista = root[i][j][k].text
                 elif root[i][j][k].tag == 'album':
                     album = root[i][j][k].text
-                    print('el album es', album)
+                    # print('el album es', album)
 
                 elif root[i][j][k].tag == 'vecesReproducida':
                     vecesReproducida = int(root[i][j][k].text)
