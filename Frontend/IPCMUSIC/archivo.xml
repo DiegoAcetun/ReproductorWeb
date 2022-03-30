@@ -1,51 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ListasReproduccion>
-    <Lista nombre="ListaA">
-    <cancion nombre="Restos">
-        <artista>ArtistaA</artista>
-        <album>AlbumA</album>
-        <vecesReproducida>54</vecesReproducida>
-        <imagen>https://drive.google.com/uc?id=1TmUCTARI5X5n50D8AAVsQZHaqgFkryQD</imagen>
-        <ruta>OABzsNnXkKE</ruta>
- </cancion>
-    <cancion nombre="Beat">
-        <artista>ArtistaA</artista>
-        <album>AlbumB</album>
-        <vecesReproducida>4</vecesReproducida>
-        <imagen>https://drive.google.com/uc?id=1Bl9MdH2wAolU0VoCaX0bXvSTrfecFQjB</imagen>
-        <ruta>I2MWtD1awHY</ruta>
- </cancion>
-    <cancion nombre="Squad">
-        <artista>ArtistaB</artista>
-        <album>AlbumA</album>
-        <vecesReproducida>1</vecesReproducida>
-        <imagen>https://drive.google.com/uc?id=18jPKD3ELa1gXJysrMlHdYk6KVmSSxNYz</imagen>
-        <ruta>qAulP7p3tOQ</ruta>
- </cancion>
- </Lista>
-    <Lista nombre="ListaB">
-    <cancion nombre="Cisne">
-        <artista>ArtistaB</artista>
-        <album>AlbumA</album>
-        <vecesReproducida>2</vecesReproducida>
-        <imagen>https://drive.google.com/uc?id=11bl1wNnR78VdUsj8NJS_n6gsd1YbFmHa</imagen>
-        <ruta>GpDlbNYyAEU</ruta>
- </cancion>
-    <cancion nombre="Remake">
-        <artista>ArtistaC</artista>
-        <album>AlbumB</album>
-        <vecesReproducida>200</vecesReproducida>
-        <imagen>https://drive.google.com/uc?id=1UmAEoyia-NbmUN4xI-4PHUpTgFy7BAWs</imagen>
-        <ruta>FWm8OHi1AO0</ruta>
- </cancion>
- </Lista>
-    <Lista nombre="ListaC">
-    <cancion nombre="Premiacion">
-        <artista>ArtistaB</artista>
-        <album>AlbumC</album>
-        <vecesReproducida>2</vecesReproducida>
-        <imagen>https://drive.google.com/uc?id=102NqRSa20Wg02X5G1Gl6sOLLMfzgP8rV</imagen>
-        <ruta>Ho4YFqlpZp4</ruta>
- </cancion>
- </Lista>
+<?xml version="1.0" encoding="UTF-8"?>
+<ListasReproduccion>
+    <Lista nombre="ListaA">
+    <cancion nombre="Restos">
+        <artista>ArtistaA</artista>
+        <album>AlbumA</album>
+        <vecesReproducida>54</vecesReproducida>
+        <imagen>https://drive.google.com/uc?id=1TmUCTARI5X5n50D8AAVsQZHaqgFkryQD</imagen>
+        <ruta>OABzsNnXkKE</ruta>
+ </cancion>
+    <cancion nombre="Beat">
+        <artista>ArtistaA</artista>
+        <album>AlbumB</album>
+        <vecesReproducida>4</vecesReproducida>
+        <imagen>https://drive.google.com/uc?id=1Bl9MdH2wAolU0VoCaX0bXvSTrfecFQjB</imagen>
+        <ruta>I2MWtD1awHY</ruta>
+ </cancion>
+    <cancion nombre="Squad">
+        <artista>ArtistaB</artista>
+        <album>AlbumA</album>
+        <vecesReproducida>1</vecesReproducida>
+        <imagen>https://drive.google.com/uc?id=18jPKD3ELa1gXJysrMlHdYk6KVmSSxNYz</imagen>
+        <ruta>qAulP7p3tOQ</ruta>
+ </cancion>
+ </Lista>
+    <Lista nombre="ListaB">
+    <cancion nombre="Cisne">
+        <artista>ArtistaB</artista>
+        <album>AlbumA</album>
+        <vecesReproducida>2</vecesReproducida>
+        <imagen>https://drive.google.com/uc?id=11bl1wNnR78VdUsj8NJS_n6gsd1YbFmHa</imagen>
+        <ruta>GpDlbNYyAEU</ruta>
+ </cancion>
+    <cancion nombre="Remake">
+        <artista>ArtistaC</artista>
+        <album>AlbumB</album>
+        <vecesReproducida>200</vecesReproducida>
+        <imagen>https://drive.google.com/uc?id=1UmAEoyia-NbmUN4xI-4PHUpTgFy7BAWs</imagen>
+        <ruta>FWm8OHi1AO0</ruta>
+ </cancion>
+ </Lista>
+    <Lista nombre="ListaC">
+    <cancion nombre="Premiacion">
+        <artista>ArtistaB</artista>
+        <album>AlbumC</album>
+        <vecesReproducida>2</vecesReproducida>
+        <imagen>https://drive.google.com/uc?id=102NqRSa20Wg02X5G1Gl6sOLLMfzgP8rV</imagen>
+        <ruta>Ho4YFqlpZp4</ruta>
+ </cancion>
+ </Lista>
 </ListasReproduccion>

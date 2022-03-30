@@ -1,0 +1,28 @@
+@api = http://127.0.0.1:5000
+
+### Getting data from the API
+POST  {{api}}/CancionesEscuchadas
+Content-Type: application/json
+
+[
+{
+    "nombreCancion": "Cancion1",
+    "reproducciones": 1
+},
+{
+    "nombreCancion": "Cancion2",
+    "reproducciones": 2
+},
+{
+    "nombreCancion": "Cancion3",
+    "reproducciones": 3
+},
+{
+    "nombreCancion": "Cancion4",
+    "reproducciones": 4
+},
+{
+    "nombreCancion": "Cancion5",
+    "reproducciones": 5
+}
+]
