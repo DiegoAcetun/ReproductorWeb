@@ -1,4 +1,4 @@
-# **IPC2_PROYECTO2DICIEMBRE_201903909**
+# **Reproductor Web Proyecto2 IPC2**
 
 El reproductor fue desarrollador utilizando django para frontend y flask como backend
 
